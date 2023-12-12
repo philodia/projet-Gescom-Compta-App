@@ -18,10 +18,9 @@ const corsOptions = {
     credentials: true,
     optionsSuccessStatus: 204,
   };
-  
-  app.use(cors(corsOptions));
-  
 
+  app.use(cors(corsOptions));
+    
 // Middleware pour body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -29,17 +28,20 @@ app.use(bodyParser.urlencoded({extended: true}));
 // Définition des routes
 const authRoutes = require('./routes/Auth.routes');
 const gescomhomeRoutes = require('./routes/GescomHome.routes');
-const comptahomeRoutes = require('./routes/ComptaHome.routes');
 const articleRoutes = require('./routes/Article.routes');
 const stockRoutes = require('./routes/Stock.routes');
+const comptahomeRoutes = require('./routes/ComptaHome.routes');
+//const grandlivreRoutes = require('./routes/GrandLivre.Routes');
 
 // Routes
 //http://localhost:5000/auth*
 app.use('/auth', authRoutes);
 app.use('/gescomhome', gescomhomeRoutes);
+app.use('/gescomhome/articles', articleRoutes);
+app.use('/gescomhome/stocks', stockRoutes);
 app.use('/comptahome', comptahomeRoutes);
-app.use('/articles', articleRoutes);
-app.use('/stocks', stockRoutes);
+//app.use("/comptahome/grandlivre", grandlivreRoutes);
+
 
 //port 
 const PORT = process.env.PORT || 5000;
